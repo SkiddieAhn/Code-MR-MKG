@@ -14,7 +14,7 @@ This paper explores a method for performing Multimodal Reasoning by combining **
 **Multimodal Knowledge Graph (MMKG)** is a knowledge graph that represents relationships between entities using multiple modalities, such as images, textual descriptions, and other forms of data.
 Since MMKG is a large-scale graph that represents relationships, if a relevant subgraph can be appropriately retrieved based on the question, it can be effectively utilized for Multimodal Analogical Reasoning.
 
-**MARS** is a dataset designed for ```Multimodal Analogical Reasoning```, and it provides a Multimodal Knowledge Graph (MMKG) called ```MarKG```. The following is a description of the MarKG files. More details can be found on the MARS GitHub repository.
+**MARS** is a dataset designed for ```Multimodal Analogical Reasoning```, and it provides a MMKG called ```MarKG```. The following is a description of the MarKG files. More details can be found on the MARS GitHub repository.
 ```bash
 entity2text: entity_id to entity_description
 relation2text: relation_id to relation_description

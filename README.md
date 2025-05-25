@@ -21,7 +21,7 @@ Other common packages.
 This tutorial covers how to load a Knowledge Graph (KG) and retrieve a subgraph corresponding to a given query.
    
 **2. Multi Modal Knowledge Graph [[Google Colab](https://colab.research.google.com/drive/15gxlp1H1hKy9fEdoUi4A_LHcvh6PUuUK?usp=sharing)]**  
-This tutorial explains how to extract and store image embeddings for Multi Modal KG (MMKG), and how to build a Sub-MMKG.
+This tutorial explains how to extract image embeddings for Multimodal KG (MMKG), and how to build a Sub-MMKG.
    
 **3. MR-MKG Modeling [[Google Colab](https://colab.research.google.com/drive/1kZnB-EZx16pvCCGJ5PZb5Bv8EnVcqtWe?usp=sharing)]**  
 This tutorial shows how to create a Sub-MMKG for multimodal analogical reasoning, and how to make prompt for LLM.

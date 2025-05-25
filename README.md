@@ -24,7 +24,7 @@ wiki_tuple_ids: knowledge triplets with (head_id, rel_id, tail_id) format
 ## Multimodal analogical reasoning and LLM
 Here is an example prompt for performing Multimodal Analogical Reasoning using an LLM:
 ```bash
-Question: "food" and "grain" are related by the relation "made from material". Considering a similar relationship, what is the text that has a made from material relation with the given image?
+Question: "food" and "grain" are related by the relation "made from material". Considering a similar relationship, what is the text that has a same relation with the given image?
 Image: {soymilk}
 Answer: "soybean"
 ```

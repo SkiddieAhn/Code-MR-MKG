@@ -1,5 +1,5 @@
-# MR-MKG
-Python tutorial of MR-MKG paper for ACL 2024: [[MR-MKG](https://aclanthology.org/2024.acl-long.579/)]  
+# Multimodal Reasoning with Multimodal Knowledge Graph
+Python tutorial of MR-MKG paper for ACL 2024: [[Paper](https://aclanthology.org/2024.acl-long.579/)]  
 To develop the tutorial code, I referred to the repository of the MARS dataset used in the paper: [[GitHub](https://github.com/zjunlp/MKG_Analogy)]
 
 First, as instructed in the README of the MARS repository, I downloaded the image data and moved it to ```MKG_Analogy/MarT/dataset/MARS/images```. Then, I conducted all tasks from the ```MKG_Analogy/MarT/dataset``` directory.
@@ -27,5 +27,5 @@ This tutorial explains how to extract and store image embeddings for Multi Modal
 This tutorial shows how to create a Sub-MMKG for multimodal analogical reasoning, and how to make prompt for LLM.
 
 ## Note
-The provided tutorial materials were implemented based on the original paper and may contain differences from the official implementation. For example, instead of using RGAT[[Paper](https://aclanthology.org/2020.emnlp-main.597/)] as the KG encoder, I used NNConv[[Paper](https://arxiv.org/abs/1704.01212)][[Code](https://pytorch-geometric.readthedocs.io/en/2.6.0/generated/torch_geometric.nn.conv.NNConv.html)]. This decision was made because the official code is currently unavailable, and NNConv serves as a viable alternative that supports edge embeddings in the graph.  
+The provided tutorial materials were implemented based on the original paper and may contain differences from the official implementation. For example, instead of using RGAT [[Paper](https://aclanthology.org/2020.emnlp-main.597/)] as the KG encoder, I used NNConv [[Paper](https://arxiv.org/abs/1704.01212)][[Code](https://pytorch-geometric.readthedocs.io/en/2.6.0/generated/torch_geometric.nn.conv.NNConv.html)]. This decision was made because the official code is currently unavailable, and NNConv serves as a viable alternative that supports edge embeddings in the graph.  
 A tutorial for training and inference may be added in the future if time permits!

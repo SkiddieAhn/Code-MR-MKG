@@ -24,19 +24,19 @@ wiki_tuple_ids: knowledge triplets with (head_id, rel_id, tail_id) format
 ## Multimodal analogical reasoning and LLM
 Here is an example prompt for performing Multimodal Analogical Reasoning using an LLM:
 ```bash
-Question: "food" and "grain" are related by the relation "made from material". Considering a similar relationship, what is the text that has a same relation with the given image?
-Image: {soymilk}
-Answer: "soybean"
+Question: "croissant" and "pastry" are related by the relation "subclass of". Considering a similar relationship, what is the text that has a same relation with the given image?
+Image: {soy milk}
+Answer: "plant milk"
 ```
 
 ## Tutorial with Jupyter Notebook
-**1. Knowledge Graph [[Google Colab](https://colab.research.google.com/drive/1om31YdESmQ4OG3c-gK_Q7XQeSI_O28nI?usp=sharing)]**  
+**1. Knowledge Graph [[Google Colab](https://colab.research.google.com/drive/1njY_YOQ8Yllo3DgAWcJf2DvzAFUrRkFr?usp=sharing)]**  
 This tutorial covers how to load a Knowledge Graph (KG) and retrieve a subgraph corresponding to a given query.
    
-**2. Multi Modal Knowledge Graph [[Google Colab](https://colab.research.google.com/drive/15gxlp1H1hKy9fEdoUi4A_LHcvh6PUuUK?usp=sharing)]**  
+**2. Multi Modal Knowledge Graph [[Google Colab](https://colab.research.google.com/drive/19JOGkbsG6qhUb9curWpEpkGF8KBLXBv0?usp=sharing)]**  
 This tutorial explains how to extract image embeddings for MMKG, and how to build a Sub-MMKG.
    
-**3. MR-MKG Modeling [[Google Colab](https://colab.research.google.com/drive/1kZnB-EZx16pvCCGJ5PZb5Bv8EnVcqtWe?usp=sharing)]**  
+**3. MR-MKG Modeling [[Google Colab](https://colab.research.google.com/drive/14jKZiRs-4NCVYYLRs_GMuoPifWCfepOZ?usp=sharing)]**  
 This tutorial shows how to create a Sub-MMKG for multimodal analogical reasoning, and how to make prompt for LLM.
 
 ## Environments  

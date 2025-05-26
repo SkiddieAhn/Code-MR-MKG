@@ -1,5 +1,5 @@
 # Multimodal Reasoning with Multimodal Knowledge Graph
-Python tutorial of MR-MKG paper for ACL 2024: [[Paper](https://aclanthology.org/2024.acl-long.579/)]  
+Python tutorial of MR-MKG paper for ACL 2024: [[Paper](https://aclanthology.org/2024.acl-long.579.pdf)]  
 To develop the tutorial code, I referred to the repository of the **MARS dataset** used in the paper: [[GitHub](https://github.com/zjunlp/MKG_Analogy)]
 
 First, as instructed in the README of the MARS repository, I downloaded the image data and moved it to ```MKG_Analogy/MarT/dataset/MARS/images```. Then, I conducted all tasks from the ```MKG_Analogy/MarT/dataset``` directory.

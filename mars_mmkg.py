@@ -55,12 +55,16 @@ def get_relation_list(graph):
     return sorted(list({r for _, r, _ in graph}))
 
 
-def get_entity_embeddings(entity_list, clip_processor, clip_model, device, clip_len=1000):
-    clip_ranges = get_ranges(len(entity_list), clip_len) 
+def get_triple_list(graph):
+    return [f'{item[0]}-{item[1]}-{item[2]}' for item in graph]
+
+
+def get_clip_text_embeddings_iter(text_list, clip_processor, clip_model, device, clip_len=1000):
+    clip_ranges = get_ranges(len(text_list), clip_len) 
     embed_list = []
     for clip_range in clip_ranges:
         start, end = clip_range[0], clip_range[1]
-        embed = get_clip_text_embeddings(entity_list[start:end], clip_processor, clip_model, device) 
+        embed = get_clip_text_embeddings(text_list[start:end], clip_processor, clip_model, device) 
         embed_list.append(embed)
     embeddings = torch.cat(embed_list, dim=0)
     return embeddings
@@ -117,23 +121,38 @@ class MARS_KG:
         self.KG_entities = get_entity_list(self.KG)
         self.KG_relations = get_relation_list(self.KG)
         self.KG_ad_list = get_ad_list(self.KG)
-        self.KG_entity_embeds = get_entity_embeddings(self.KG_entities, self.clip_processor, self.clip_model, self.device, self.clip_batch_size)
+        self.KG_triples = get_triple_list(self.KG)
+        self.KG_triple_embeds = get_clip_text_embeddings_iter(self.KG_triples, self.clip_processor, self.clip_model, self.device, self.clip_batch_size)
 
-    def get_sub_KG(self, query, top_n=10, top_N=10):
-        # query embedding
-        if isinstance(query, str):
-            query_embed = get_clip_text_embeddings([query], self.clip_processor, self.clip_model, self.device)
+    def get_sub_KG(self, query, top_n=10, top_N=10, query_mode=0):
+        # query embedding: early fusion (many queries)
+        if query_mode == 0:
+            query_embed_list = []
+            for query_item in query:
+                if isinstance(query_item, str):
+                    query_embed = get_clip_text_embeddings([query_item], self.clip_processor, self.clip_model, self.device)
+                else:
+                    query_embed = get_clip_image_embeddings([query_item], self.clip_processor, self.clip_model, self.device)
+                query_embed_list.append(query_embed)
+            query_embed_tensor = torch.cat(query_embed_list, dim=0)
+            query_embed = query_embed_tensor.mean(dim=0).view(1, -1) 
+
+        # query embedding: late fusion (one query)
         else:
-            query_embed = get_clip_image_embeddings([query], self.clip_processor, self.clip_model, self.device)
+            if isinstance(query, str):
+                query_embed = get_clip_text_embeddings([query], self.clip_processor, self.clip_model, self.device)
+            else:
+                query_embed = get_clip_image_embeddings([query], self.clip_processor, self.clip_model, self.device)
 
         # retrieve sub-graph
         query_embed_norm = F.normalize(query_embed, dim=1)
-        kg_embed_norm = F.normalize(self.KG_entity_embeds, dim=1)
+        kg_embed_norm = F.normalize(self.KG_triple_embeds, dim=1)
         similarity = query_embed_norm @ kg_embed_norm.T
 
-        _, topn_indices = similarity.squeeze(1).topk(top_n, largest=True)
-        topn_indices_np = topn_indices[0].cpu().numpy()
-        sub_entities = [self.KG_entities[i] for i in topn_indices_np]
+        _, topn_indices = similarity.squeeze(0).topk(top_n, largest=True)
+        topn_indices_np = topn_indices.cpu().numpy()
+        sub_triples = [self.KG[i] for i in topn_indices_np]
+        sub_entities = get_entity_list(sub_triples)
 
         sub_KG = []
         for se in sub_entities:
@@ -144,17 +163,13 @@ class MARS_KG:
                     sub_KG.append((se, rel, nbr))  
 
         # filter sub-graph
-        sg_text_list = []
-        for item in sub_KG:
-            text = f'{item[0]}-{item[1]}-{item[2]}'
-            sg_text_list.append(text)     
-
-        sgt_embed = get_clip_text_embeddings(sg_text_list, self.clip_processor, self.clip_model, self.device)
+        sg_triples = get_triple_list(sub_KG)  
+        sgt_embed = get_clip_text_embeddings(sg_triples, self.clip_processor, self.clip_model, self.device)
         sgt_embed_norm =  F.normalize(sgt_embed, dim=1)
         re_similarity = query_embed_norm @ sgt_embed_norm.T
 
-        _, re_topn_indices = re_similarity.squeeze(1).topk(top_N, largest=True)
-        re_topn_indices_np = re_topn_indices[0].cpu().numpy()
+        _, re_topn_indices = re_similarity.squeeze(0).topk(top_N, largest=True)
+        re_topn_indices_np = re_topn_indices.cpu().numpy()
         f_sub_KG = [sub_KG[i] for i in re_topn_indices_np]
         return f_sub_KG
     

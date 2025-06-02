@@ -53,4 +53,4 @@ The provided tutorial materials were implemented based on the original paper and
 A tutorial for training and inference may be added in the future if time permits!
 
 ## 📖 Presentation
-* <strong>Presentation of the MRMKG Paper in Korean</strong>: [[Link](https://shacoding.com/wp-content/uploads/2025/05/ACL24_Multimodal-Reasoning-with-Multimodal-Knowledge-Graph.pdf)] (25.05.27)
+* <strong>Presentation of the MR-MKG Paper in Korean</strong>: [[Link](https://shacoding.com/wp-content/uploads/2025/05/ACL24_Multimodal-Reasoning-with-Multimodal-Knowledge-Graph.pdf)] (25.05.27)

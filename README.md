@@ -51,3 +51,6 @@ Other common packages.
 ## Note
 The provided tutorial materials were implemented based on the original paper and may contain differences from the official implementation. For example, instead of using RGAT [[Paper](https://aclanthology.org/2020.emnlp-main.597/)] as the KG encoder, I used NNConv [[Paper](https://arxiv.org/abs/1704.01212)][[Code](https://pytorch-geometric.readthedocs.io/en/2.6.0/generated/torch_geometric.nn.conv.NNConv.html)]. This decision was made because the official code is currently unavailable, and NNConv serves as a viable alternative that supports edge embeddings in the graph.  
 A tutorial for training and inference may be added in the future if time permits!
+
+## 📖 Presentation
+* <strong>Presentation of the MRMKG Paper in Korean</strong>: [[Link](https://shacoding.com/wp-content/uploads/2025/05/ACL24_Multimodal-Reasoning-with-Multimodal-Knowledge-Graph.pdf)] (25.05.27)
